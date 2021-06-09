@@ -21,11 +21,12 @@ def close_connection(exception):
     if db is not None:
         db.close()
 
-@app.route('/home')
+@app.route('/')
 def home():
     if 'username' in session:
-        return f'Logged in as {session["username"]}'
-    results = 'You are not logged in'
+        results = f'Logged in as {session["username"]}'
+        return render_template("home.html", result=results)
+    results = ("Not logged in")
     return render_template("home.html", result=results)
 
     
@@ -98,7 +99,7 @@ def login_function():
 def logout():
     # remove the username from the session if it's there
     session.pop('username', None)
-    return redirect(url_for('fail'))
+    return redirect(url_for('home'))
 
 
 if __name__ == "__main__":
