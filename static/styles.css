@@ -1,0 +1,88 @@
+html{
+	background-color:#242b46;
+
+	font-family: Garamond, Arial, sans-serif, Comic Sans MS, Comic Sans, cursive;
+}
+/*#
+wrapper{
+	margin:0 auto;
+	max-width:75%;  Wrapper
+}
+
+*/
+
+table {
+  font-family: Arial, Garamond, sans-serif, cursive;
+  border-collapse: collapse;
+  width: 100%;
+
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+
+}
+
+tr:nth-child(even) {
+
+  background-color: #b1b1b1;
+
+}
+
+
+
+
+.nav {
+  overflow: hidden;
+  background-color: #64585f;
+  text-align: center;
+}
+
+.nav a {
+  float: center;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 3px 120px;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.nav a:hover {
+  background-color: #ddd;
+  color: black;
+  text-align: center;
+}
+
+html, body 
+{
+  margin: 0;
+}
+/* the Nav bar is above. hover and everything works*/
+
+
+
+.button {
+    overflow: hidden;
+    background-color: #403344;
+  }
+  
+  .button a {
+    float: center;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 3px 120px;
+    text-decoration: none;
+    font-size: 22px;
+  }
+  
+  .button a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  img {
+    max-width:1000px;
+    max-height:1000px;
+  }

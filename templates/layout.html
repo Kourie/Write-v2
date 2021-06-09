@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}
+    </title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <div id = "wrapper">
+    <header>
+        <h2>This is where i write all that you need to know</h2>
+        <h2>about my book</h2>
+        <h3>Characters and all that ❤</h3>
+    </header>
+    <nav>
+    <div class="nav">
+      <p><a href="home">Home</a></p>
+        
+      <p><a href="login">login</a> <a class="active" href="register">register</a></p>
+    </nav>
+
+
+    {% block body %}
+    
+    {% endblock %}
+
+    {% with messages = get_flashed_messages() %}
+
+  {% if messages %}
+  
+    <ul class=flashes>
+
+    {% for message in messages %}
+
+      <li>{{ message }}</li>
+
+    {% endfor %}
+    </ul>
+
+  {% endif %}
+{% endwith %}
+
+</body>
+</html>
