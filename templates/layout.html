@@ -5,23 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}
     </title>
-    <link rel="stylesheet" href="/static/styles.css">
-</head>
+    <!-- <link rel="stylesheet" href="/static/styles.css"> -->
 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+<div class = "w3-container bg">
+
+ 
 <body>
-    <div id = "wrapper">
+    <div id = "wrapper" style="position: relative; top: 40px;">
     <header>
-        <h2>This is where i write all that you need to know</h2>
-        <h2>about my book</h2>
-        <h3>Characters and all that ❤</h3>
-        <span class="loginlogoutlink">
+        <div class="button">
           <a title="Log Out" href="logout">Log Out</a>
+        </button>
     </header>
     <nav>
-    <div class="nav">
-      <p><a href="/">Home</a></p>
-        
-      <p><a href="login">login</a> <a class="active" href="register">register</a></p>
+    <div class="nav">  
+      <p><a href="login">login</a> <a href="/">Home</a> <a class="active" href="register">register</a></p>
     </nav>
 
 
@@ -46,4 +47,5 @@
 {% endwith %}
 
 </body>
+</div>
 </html>

@@ -62,7 +62,6 @@ tr:nth-child(even) {
   background-color: #64585f;
   text-align: center;
   transition-duration: 0.4s;
-  margin: 100px;
 }
 
 .nav a {
@@ -71,7 +70,7 @@ tr:nth-child(even) {
   text-align: center;
   padding: 3px 120px;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 22px;
   transition-duration: 0.4s;
 }
 
@@ -112,9 +111,7 @@ html, body
     color: black;
   }
 
-
   img {
     max-width:1000px;
     max-height:1000px;
   }
-

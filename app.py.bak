@@ -52,7 +52,7 @@ def register_function():
             get_db().commit()  
         except:
             flash ("failed to register, username already exists")
-        return redirect ("/register")
+        return redirect ("/")
         
         
         
