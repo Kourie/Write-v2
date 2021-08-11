@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}
     </title>
-    <link rel="stylesheet" href="/static/css.css">
+    <!-- <link rel="stylesheet" href="/static/styles.css"> -->
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -20,10 +20,9 @@
           <a title="Log Out" href="logout">Log Out</a>
         </button>
     </header>
-    <h2>{{results}}</h2>
     <nav>
     <div class="nav">  
-      <p><a href="account">account</a> <a href="/">Home</a> <a class="active" href="out">The Medium</a></p>
+      <p><a href="login">login</a> <a href="/">Home</a> <a class="active" href="register">register</a></p>
     </nav>
 
 

@@ -16,8 +16,6 @@ uwu noises please DIE
     <input placeholder="email" type="text" name="Email" required>
     <input placeholder="password" type="text" name="password" required>
     <input type="submit" value="register">
-	<br></br>
-	<br></br>
 </form>
 
 {% endblock %}

@@ -7,8 +7,6 @@ DATABASE = 'time.db'
 
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
-
-
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
@@ -25,11 +23,23 @@ def close_connection(exception):
 def home():
     if 'username' in session:
         results = f'Logged in as {session["username"]}'
-        return render_template("home.html", result=results)
-    results = ("Not logged in")
-    return render_template("home.html", result=results)
+        log = ('enter the medium')
+        return render_template("home.html", result=results, log=log)
+    return render_template("basic.html")
 
-    
+@app.route('/account')
+def account():
+    if 'username' in session:
+        results = f'Logged in as {session["username"]}'
+        return render_template("account.html", result=results)
+    flash ("an error occured. please retry or log out and log in again")
+    return render_template("basic.html")
+
+
+
+@app.route('/trueHome')
+def truehome():
+    return render_template("trueHome.html")
 
 @app.route('/login')
 def login():
@@ -53,23 +63,26 @@ def register_function():
         except:
             flash ("failed to register, username already exists")
         return redirect ("/register")
-        
-        
-        
 
     return render_template("register.html")
 
-
-@app.route('/logged')
-def logged():
-    home()
-    cursor = get_db().cursor()
-    sql = ("SELECT * FROM Account WHERE user_id = (?)")
-    cursor.execute(sql,(session['username'],))
-    result=cursor.fetchall()
-    print (result)
+###
+#@app.route('/logged')
+#def logged():
+#    home()
+#    cursor = get_db().cursor()
+#    sql = ("SELECT * FROM Account WHERE user_id = (?)")
+#    cursor.execute(sql,(session['username'],))
+#    result=cursor.fetchall()
+#    print (result)
     
-    return render_template("logged.html", results=result)
+#    if 'username' in session:
+#        results = f'Logged in as {session["username"]}'
+#        return render_template("home.html", result=results)
+#    log = ("Not logged in")
+
+
+#    return render_template("logged.html", results=result, log=log)
 
 @app.route('/fail')
 def fail():
@@ -77,7 +90,22 @@ def fail():
 
 
 
-@app.route('/find', methods=["GET","Post"])  #broken fail safe, 
+
+@app.route('/out')
+def out():
+    if 'username' in session:
+       #querey of data to import/send to the box thing
+        return render_template("out.html")
+    else:
+        results = ("Not logged in")
+
+        print ("aaaaaaaa")
+        return render_template("fail.html", result=results,)
+    
+
+
+
+@app.route('/find', methods=["GET","Post"])  
 def login_function():
     if request.method == "POST":
        
@@ -86,18 +114,42 @@ def login_function():
         password = request.form.get("password")
         find_user = ("SELECT * FROM Account WHERE (user_ID,password) = (?,?)")
         cursor.execute(find_user,(user_ID, password))
-        results = cursor.fetchall()
-        print (results)
-        
+        results = cursor.fetchall()       
+         
         if len(results) > 0:
              #he have a user in the database with the right password
             session['username'] = request.form['username']
-            return redirect ("/logged")
+            global user
+            user = (results[0][0])
+            return redirect ("/out")
         
         else:
             flash ("error, check spelling and caps")
             return redirect ("/login")
             
+
+
+
+
+
+@app.route('/upload',methods=["GET","Post"])
+def upload():
+    request.files['file'].save(f'static/uploads/{request.files["file"].filename}')
+    if request.method == "POST":
+        global user
+        cursor = get_db().cursor()
+        filename = request.files["file"]
+        print(filename)
+        User_ID = user
+        print (User_ID)
+        sql = ("INSERT INTO Image(filename, User_ID) VALUES (?,?)")
+        cursor.execute(sql,(filename,User_ID))
+        results = cursor.fetchall()
+        print (results)
+        get_db().commit()
+    return redirect("/out")
+
+
 
 
 

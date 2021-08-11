@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}
+        
+    </title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="/static/css.css">
+
+
+    <body>
+
+
+        {% block body %}
+    
+        {% endblock %}
+
+        {% with messages = get_flashed_messages() %}
+
+        {% if messages %}
+        
+          <ul class=flashes>
+      
+          {% for message in messages %}
+      
+            <li>{{ message }}</li>
+      
+          {% endfor %}
+          </ul>
+      
+        {% endif %}
+      {% endwith %}
+      
+      </body>
+</html>
