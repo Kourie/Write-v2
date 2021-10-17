@@ -59,7 +59,10 @@ def register_function():
         print (password + " pass")
         try:
             cursor.execute(sql,(user_ID,Email,password))
-            get_db().commit()  
+            get_db().commit()
+            flash ("User registered, please log in")
+            return redirect ("/login")
+            
         except:
             flash ("failed to register, username already exists")
         return redirect ("/register")
@@ -94,13 +97,18 @@ def fail():
 @app.route('/out')
 def out():
     if 'username' in session:
+        cursor = get_db().cursor()
        #querey of data to import/send to the box thing
-        return render_template("out.html")
+        sql = ("SELECT * FROM Image") 
+        cursor.execute(sql)
+        results = cursor.fetchall() 
+        print (results)
+        return render_template("out.html", results=results)
     else:
         results = ("Not logged in")
 
         print ("aaaaaaaa")
-        return render_template("fail.html", result=results,)
+        return render_template("fail.html", results=results)
     
 
 
@@ -139,14 +147,14 @@ def upload():
         global user
         cursor = get_db().cursor()
         filename = request.files["file"]
-        print(filename)
+        print(filename.filename)
         User_ID = user
         print (User_ID)
         sql = ("INSERT INTO Image(filename, User_ID) VALUES (?,?)")
-        cursor.execute(sql,(filename,User_ID))
+        cursor.execute(sql,(filename.filename,User_ID))
+        get_db().commit()
         results = cursor.fetchall()
         print (results)
-        get_db().commit()
     return redirect("/out")
 
 
